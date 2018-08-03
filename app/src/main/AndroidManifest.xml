@@ -20,14 +20,24 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LibraryActivity" >
+    </activity>
         <activity android:name=".SearchActivity" >
+        </activity>
+        <activity android:name=".AddBookActivity" >
+        </activity>
+        <activity android:name=".MenuActivity" >
+        </activity>
+        <activity android:name=".StudentActivity" >
+        </activity>
+        <activity android:name=".WishlistActivity" >
         </activity>
     </application>
 

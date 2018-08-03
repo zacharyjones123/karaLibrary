@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/color_book_card1">
+
+    <Button
+        android:id="@+id/library_btn"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:text="Library"
+        app:layout_constraintBottom_toTopOf="@+id/student_btn"
+        app:layout_constraintEnd_toStartOf="@+id/search_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/search_btn"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:text="Search Library"
+        app:layout_constraintBottom_toTopOf="@+id/wishlist_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/library_btn" />
+
+    <Button
+        android:id="@+id/student_btn"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="4dp"
+        android:text="See Students"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/wishlist_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/wishlist_btn"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="4dp"
+        android:text="Wishlist"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toEndOf="@+id/student_btn" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="251dp"
+        android:layout_height="124dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginLeft="67dp"
+        android:layout_marginRight="66dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="16dp"
+        android:text="Pick An Option"
+        android:textSize="36sp"
+        android:typeface="normal"
+        app:fontFamily="sans-serif"
+        app:layout_constraintBottom_toTopOf="@+id/library_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

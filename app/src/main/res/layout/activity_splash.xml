@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light"
+    tools:background="@color/color_book_card1">
+
+    <TextView
+        android:id="@+id/title_view"
+        android:layout_width="287dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="77dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="63dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Welcome To Kara's Library"
+        android:textSize="36sp"
+        android:typeface="normal"
+        app:fontFamily="cursive"
+        app:layout_constraintBottom_toTopOf="@+id/enter_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/enter_btn"
+        android:layout_width="244dp"
+        android:layout_height="142dp"
+        android:layout_marginBottom="85dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginStart="72dp"
+        android:background="@color/color_book_card2"
+        android:text="Enter"
+        android:textSize="24sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>
