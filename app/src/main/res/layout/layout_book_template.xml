@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bookView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/bookImageView"
+        android:layout_width="127dp"
+        android:layout_height="175dp"
+        android:padding="4dp"
+        app:srcCompat="@drawable/i9780022858667" />
+
+    <TextView
+        android:id="@+id/textViewBookTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/bookImageView"
+        android:text="Caps For Sale"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewAuthor"
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewBookTitle"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/bookImageView"
+        android:text="Esphyr Slobodkina"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+    <TextView
+        android:id="@+id/textViewRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAuthor"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/bookImageView"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="4.5"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewISBN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewRating"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/bookImageView"
+        android:text="978-0064431439"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textStyle="bold" />
+
+</RelativeLayout>

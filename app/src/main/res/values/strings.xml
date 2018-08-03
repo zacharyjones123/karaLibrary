@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Karas Library</string>
+    <string name="TextView01">This is text view1</string>
+    <string name="home">R.drawable.i9780060540241</string>
+</resources>

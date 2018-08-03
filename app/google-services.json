@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "264803834074",
+    "firebase_url": "https://karalibrary-512e7.firebaseio.com",
+    "project_id": "karalibrary-512e7",
+    "storage_bucket": "karalibrary-512e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264803834074:android:87ce32baa42754a2",
+        "android_client_info": {
+          "package_name": "android.missioncontrol7777.zrjones77.karalibrary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264803834074-u7heer0fpgp9emao1oucquau7e3pq229.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "android.missioncontrol7777.zrjones77.karalibrary",
+            "certificate_hash": "8ab0ec6afbfccd065a4b31990896b06d85ab99bc"
+          }
+        },
+        {
+          "client_id": "264803834074-ihjb1sv26ajl3scl11subj21jknemibd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANWdZo4wqJYbx3UB4gdEin8sAYto98wZw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264803834074-ihjb1sv26ajl3scl11subj21jknemibd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
