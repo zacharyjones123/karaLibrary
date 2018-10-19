@@ -20,7 +20,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:text="Search Library"
-        app:layout_constraintBottom_toTopOf="@+id/wishlist_btn"
+        app:layout_constraintBottom_toTopOf="@+id/add_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/library_btn" />
 
@@ -31,15 +31,15 @@
         android:layout_marginBottom="4dp"
         android:text="See Students"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/wishlist_btn"
+        app:layout_constraintEnd_toStartOf="@+id/add_btn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/wishlist_btn"
+        android:id="@+id/add_btn"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginBottom="4dp"
-        android:text="Wishlist"
+        android:text="Add Book"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.625"

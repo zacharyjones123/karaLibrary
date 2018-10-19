@@ -35,10 +35,10 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button wishListBtn = (Button)findViewById(R.id.wishlist_btn);
-        wishListBtn.setOnClickListener(new View.OnClickListener() {
+        Button addBtn = (Button)findViewById(R.id.add_btn);
+        addBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent mInHome = new Intent(getBaseContext(), WishlistActivity.class);
+                Intent mInHome = new Intent(getBaseContext(), AddBookActivity.class);
                 startActivity(mInHome);
             }
         });
