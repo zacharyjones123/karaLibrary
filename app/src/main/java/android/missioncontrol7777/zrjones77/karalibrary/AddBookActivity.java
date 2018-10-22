@@ -136,7 +136,12 @@ public class AddBookActivity extends AppCompatActivity {
                                         description_text.setText((String)(String)responseJson.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo").get("description"));
                                     } catch (JSONException e) {
                                         e.printStackTrace();
+                                        TextView title_text = (TextView)findViewById(R.id.title_json_text);
+                                        title_text.setText("Does Not Exist");
                                     }
+                                } else {
+                                    TextView title_text = (TextView)findViewById(R.id.title_json_text);
+                                    title_text.setText("No Barcode");
                                 }
                             }
                         }
