@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#914b00</color>
+    <color name="colorPrimary">#c29c74</color>
     <color name="colorPrimaryDark">#c26100</color>
     <color name="colorAccent">#6d9700</color>
     <color name="color_book_card1">#ff7139</color>
-    <color name="color_book_card2">#ff9f79</color>
-    <color name="control_background">#cc4285f4</color>
+    <color name="color_book_card2">#ffd398</color>
+    <color name="control_background">#876536</color>
+    <color name="second_background"></color>
 </resources>
