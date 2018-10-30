@@ -2,6 +2,9 @@ package android.missioncontrol7777.zrjones77.karalibrary;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -18,13 +21,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 
 public class LibraryActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    public static Library library = null;
+    public static Context mContext;
 
     View Custmv;
 
@@ -32,8 +40,11 @@ public class LibraryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
+        mContext = this;
 
-        final Library library = makeNewLibrary();
+        if(library == null) {
+            library = makeNewLibrary(mContext);
+        }
 
         final LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.layout_books, null);
@@ -93,11 +104,13 @@ public class LibraryActivity extends AppCompatActivity {
                         ImageView imageView = (ImageView) template.findViewById(R.id.bookImageView);
                         //Need to find the right resource
                         int checkExistence = LibraryActivity.this.getResources().getIdentifier("i" + b.getISBN(), "drawable", LibraryActivity.this.getPackageName());
-                        //System.out.println("i" + b.getISBN() + ".jpg");
+
                         if (checkExistence != 0) {  // the resouce exists...
                             //System.out.println("Worked");
                             imageView.setImageResource(checkExistence);
-                        } else {
+                        } else if(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg").exists()) {
+                            imageView.setImageURI(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg")));
+                        }else {
                             imageView.setImageResource(R.drawable.i0000000000000);
                         }
                         TextView textViewBookTitle = (TextView) template.findViewById(R.id.textViewBookTitle);
@@ -141,6 +154,8 @@ public class LibraryActivity extends AppCompatActivity {
                         if (checkExistence != 0) {  // the resouce exists...
                             //System.out.println("Worked");
                             imageView.setImageResource(checkExistence);
+                        }else if(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg").exists()) {
+                            imageView.setImageURI(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg")));
                         } else {
                             imageView.setImageResource(R.drawable.i0000000000000);
                         }
@@ -185,6 +200,8 @@ public class LibraryActivity extends AppCompatActivity {
                         if (checkExistence != 0) {  // the resouce exists...
                             //System.out.println("Worked");
                             imageView.setImageResource(checkExistence);
+                        }else if(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg").exists()) {
+                            imageView.setImageURI(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg")));
                         } else {
                             imageView.setImageResource(R.drawable.i0000000000000);
                         }
@@ -229,6 +246,8 @@ public class LibraryActivity extends AppCompatActivity {
                         if (checkExistence != 0) {  // the resouce exists...
                             //System.out.println("Worked");
                             imageView.setImageResource(checkExistence);
+                        }else if(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg").exists()) {
+                            imageView.setImageURI(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg")));
                         } else {
                             imageView.setImageResource(R.drawable.i0000000000000);
                         }
@@ -285,6 +304,8 @@ public class LibraryActivity extends AppCompatActivity {
                 if (checkExistence != 0) {  // the resouce exists...
                     //System.out.println("Worked");
                     imageView.setImageResource(checkExistence);
+                }else if(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg").exists()) {
+                    imageView.setImageURI(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/i" + b.getISBN() + ".jpg")));
                 } else {
                     imageView.setImageResource(R.drawable.i0000000000000);
                 }
@@ -370,8 +391,12 @@ public class LibraryActivity extends AppCompatActivity {
         }
     }
 
-    protected Library makeNewLibrary() {
-        InputStream is = this.getResources().openRawResource(R.raw.isbn);
+    public static Context getContext() {
+        return mContext;
+    }
+
+    public static Library makeNewLibrary(Context c) {
+        InputStream is = c.getResources().openRawResource(R.raw.isbn);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
         String data = "";

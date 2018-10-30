@@ -1,9 +1,11 @@
 package android.missioncontrol7777.zrjones77.karalibrary;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,6 +15,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,50 +38,116 @@ import java.io.File;
 import java.util.List;
 
 public class AddBookActivity extends AppCompatActivity {
+    Context cAdd;
+    public static Bitmap myBitmap;
+    public static String isbnShare;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addbook);
+        cAdd = this;
 
-        //This is for the Google API
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        TextView isbn_text = (TextView)findViewById(R.id.isbn_json_text);
+        isbn_text.setVisibility(View.GONE);
+        final EditText isbn_edit = (EditText)findViewById(R.id.isbn_edit);
+        isbn_edit.setVisibility(View.VISIBLE);
+        //isbn_edit.setText("isbn");
 
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
+        TextView author_view = (TextView)findViewById(R.id.author_json_text);
+        author_view.setVisibility(View.GONE);
+        final EditText author_edit = (EditText)findViewById(R.id.author_edit);
+        author_edit.setVisibility(View.VISIBLE);
+        //author_edit.setText("author");
 
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.READ_CONTACTS)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-            } else {
-                // No explanation needed; request the permission
-                // ActivityCompat.requestPermissions(this,
-                //        new String[]{android.Manifest.permission.READ_CONTACTS},
-                //        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+        TextView title_text = (TextView)findViewById(R.id.title_json_text);
+        title_text.setVisibility(View.GONE);
+        final EditText title_edit = (EditText)findViewById(R.id.title_edit);
+        title_edit.setVisibility(View.VISIBLE);
+        //title_edit.setText("title");
 
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
+        TextView categories_text = (TextView)findViewById(R.id.categories_json_text);
+        categories_text.setVisibility(View.GONE);
+        final EditText categories_edit = (EditText)findViewById(R.id.categories_edit);
+        categories_edit.setVisibility(View.VISIBLE);
+        //categories_edit.setText("home");
+
+        TextView description_text = (TextView)findViewById(R.id.description_json_text);
+        description_text.setVisibility(View.GONE);
+        final EditText description_edit = (EditText)findViewById(R.id.description_edit);
+        description_edit.setVisibility(View.VISIBLE);
+        //description_edit.setText("description");
+
+        final Button confirmButton = findViewById(R.id.confirm_button);
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String ISBN = isbn_edit.getText().toString();
+                String title = title_edit.getText().toString();
+                String author = author_edit.getText().toString();
+                String[] splitter = author.split(" ");
+                String authorFirst = splitter[0];
+                String authorLast = splitter[1];
+                String genre = categories_edit.getText().toString();
+                String grade = "Nah";
+                String subject = categories_edit.getText().toString();
+                String description = description_edit.getText().toString();
+
+
+                if(LibraryActivity.library == null) {
+                    LibraryActivity.library = LibraryActivity.makeNewLibrary(cAdd);
+                }
+                //I need to add a book to the library
+                LibraryActivity.library.addBook(new Book(ISBN, title,
+                        authorFirst, authorLast,
+                        genre, grade,
+                        subject,description));
+
             }
-        } else {
-            // Permission has already been granted
-        }
+        });
 
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
+        final Button cameraButton = findViewById(R.id.camera_button);
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
-        String path = Environment.getExternalStorageDirectory() + "/pic.jpg";
-        File file = new File(path);
-        Uri outputFileUri = Uri.fromFile(file);
-        Intent intent = new Intent(
-                MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                //This is for the Google API
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+
+                StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                StrictMode.setVmPolicy(builder.build());
+
+                String path = Environment.getExternalStorageDirectory() + "/i" + isbn_edit.getText().toString() + ".jpg";
+                isbnShare = path;
+                File file = new File(path);
+                Uri outputFileUri = Uri.fromFile(file);
+                Intent intent = new Intent(
+                        MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+                if (isbn_edit.getText().toString().equals(null)) {
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                } else {
+                    startActivity(intent);
+                }
+
+            }
+        });
+
+        final Button updatePicButton = findViewById(R.id.update_button);
+        updatePicButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                myBitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/i" + isbn_edit.getText().toString() + ".jpg");
+                //String fname = Environment.getExternalStorageDirectory() + "/pic.jpg";
+                //System.out.println(fname);
+                BitmapDrawable ob = new BitmapDrawable(getResources(), myBitmap);
+                ScrollView layout = (ScrollView)findViewById(R.id.scroll_view);
+                layout.setBackgroundDrawable(ob);
+
+            }
+        });
+
+
+
     }
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -87,6 +160,8 @@ public class AddBookActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //Activate the Barcode Scanner
+
+
         FirebaseVisionBarcodeDetectorOptions options =
                 new FirebaseVisionBarcodeDetectorOptions.Builder()
                         .setBarcodeFormats(
