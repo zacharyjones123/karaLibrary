@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:264803834074:android:87ce32baa42754a2",
         "android_client_info": {
-          "package_name": "android.missioncontrol7777.zrjones77.karalibrary"
+          "package_name": "jonesFitness.missioncontrol7777.zrjones77.karalibrary"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "264803834074-u7heer0fpgp9emao1oucquau7e3pq229.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "android.missioncontrol7777.zrjones77.karalibrary",
+            "package_name": "jonesFitness.missioncontrol7777.zrjones77.karalibrary",
             "certificate_hash": "8ab0ec6afbfccd065a4b31990896b06d85ab99bc"
           }
         },

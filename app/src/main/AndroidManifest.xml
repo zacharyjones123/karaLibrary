@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="android.missioncontrol7777.zrjones77.karalibrary">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="jonesFitness.missioncontrol7777.zrjones77.karalibrary">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="com.example.towntour.permission.MAPS_RECEIVE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.MY_PERMISSIONS_REQUEST_READ_CONTACTS"/>
-    <uses-feature android:name="android.hardware.camera2.full" />
     <uses-permission android:name="com.example.permission.C2D_MESSAGE" />
 
     <application
@@ -27,7 +18,7 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
+        <activity android:name="jonesFitness.missioncontrol7777.zrjones77.karalibrary.SplashActivity"
             android:label="@string/app_name"
             android:icon = "@drawable/splash_icon" >
             <intent-filter>
@@ -37,22 +28,22 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".LibraryActivity" >
+        <activity android:name="jonesFitness.missioncontrol7777.zrjones77.karalibrary.LibraryActivity" >
         </activity>
-        <activity android:name=".SearchActivity"
+        <activity android:name="jonesFitness.missioncontrol7777.zrjones77.karalibrary.SearchActivity"
             android:windowSoftInputMode="stateVisible|adjustResize">
         </activity>
-        <activity android:name=".AddBookActivity"
+        <activity android:name="jonesFitness.missioncontrol7777.zrjones77.karalibrary.AddBookActivity"
             android:windowSoftInputMode="stateVisible|adjustResize">
         </activity>
-        <activity android:name=".MenuActivity" >
+        <activity android:name="jonesFitness.missioncontrol7777.zrjones77.karalibrary.MenuActivity" >
         </activity>
-        <activity android:name=".StudentActivity" >
+        <activity android:name="jonesFitness.missioncontrol7777.zrjones77.karalibrary.StudentActivity" >
         </activity>
-        <activity android:name=".WishlistActivity" >
+        <activity android:name="jonesFitness.missioncontrol7777.zrjones77.karalibrary.WishlistActivity" >
         </activity>
         <activity
-            android:name=".CameraActivity" >
+            android:name="jonesFitness.missioncontrol7777.zrjones77.karalibrary.CameraActivity" >
         </activity>
 
         <meta-data
