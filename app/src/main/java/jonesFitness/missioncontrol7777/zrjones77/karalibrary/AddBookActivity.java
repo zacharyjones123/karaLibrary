@@ -99,8 +99,11 @@ public class AddBookActivity extends AppCompatActivity {
                 String description = description_edit.getText().toString();
 
                 File libraryFile = new File(getFilesDir(), "home");
+                if(LibraryActivity.library == null) {
                     LibraryActivity.library = LibraryActivity.makeNewLibrary(cAdd, libraryFile);
+                }
                 //I need to add a book to the library
+                System.out.println("Image Exists: " + imageExists);
                 LibraryActivity.library.addBook(new Book(ISBN, title,
                         authorFirst, authorLast,
                         genre, grade,

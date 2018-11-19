@@ -421,27 +421,35 @@ public class LibraryActivity extends AppCompatActivity {
                 while ((data = reader.readLine()) != null) {
                     Book book = new Book();
                     book.setISBN(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setTitle(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setAuthorFirst(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setAuthorLast(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setGenre(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setGrade(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setSubject(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setDescription(data);
+
+                    data = reader.readLine();
+                    System.out.println("description: " + data);
+                    if(data.equals("true")) {
+                        book.setHasImage(true);
+                    } else {
+                        book.setHasImage(false);
+                    }
 
                     library.addBook(book);
                 }
@@ -455,27 +463,35 @@ public class LibraryActivity extends AppCompatActivity {
                 while ((data = reader.readLine()) != null) {
                     Book book = new Book();
                     book.setISBN(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setTitle(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setAuthorFirst(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setAuthorLast(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setGenre(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setGrade(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setSubject(data);
-                    //System.out.println(data);
+                    System.out.println(data);
                     data = reader.readLine();
                     book.setDescription(data);
+
+                    data = reader.readLine();
+                    System.out.println("description: " + data);
+                    if(data.equals("true")) {
+                        book.setHasImage(true);
+                    } else {
+                        book.setHasImage(false);
+                    }
 
                     library.addBook(book);
                 }
@@ -492,7 +508,7 @@ public class LibraryActivity extends AppCompatActivity {
 
         photo = Bitmap.createScaledBitmap(photo, 100, 100, false);
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+        photo.compress(Bitmap.CompressFormat.JPEG, 10, bytes);
 
         try {
             File f = new File(path);

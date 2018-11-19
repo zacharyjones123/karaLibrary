@@ -23,7 +23,6 @@ public class Book {
         this.description = null;
         this.subject = null;
         rating = -1;
-        this.hasImage = false;
     }
 
     public Book(String ISBN) {
@@ -160,8 +159,14 @@ public class Book {
         s += grade + "\n";
         s += subject + "\n";
         String text = description;
-        text = text.replace("\n", "").replace("\r", "");
-        s += text + "\n";
+        if(text != null) {
+            text = text.replace("\n", "").replace("\r", "");
+            s += text + "\n";
+        } else {
+            s += "null";
+        }
+
+        s += hasImage + "\n";
         return s;
     }
 
