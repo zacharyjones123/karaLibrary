@@ -1,5 +1,6 @@
 package jonesFitness.missioncontrol7777.zrjones77.karalibrary;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -33,13 +34,18 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class AddBookActivity extends AppCompatActivity {
     Context cAdd;
     public static Bitmap myBitmap;
     public static String isbnShare;
+
+    boolean imageExists = false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,17 +98,17 @@ public class AddBookActivity extends AppCompatActivity {
                 String subject = categories_edit.getText().toString();
                 String description = description_edit.getText().toString();
 
-
-                if(LibraryActivity.library == null) {
-                    LibraryActivity.library = LibraryActivity.makeNewLibrary(cAdd);
-                }
+                File libraryFile = new File(getFilesDir(), "home");
+                    LibraryActivity.library = LibraryActivity.makeNewLibrary(cAdd, libraryFile);
                 //I need to add a book to the library
                 LibraryActivity.library.addBook(new Book(ISBN, title,
                         authorFirst, authorLast,
                         genre, grade,
-                        subject,description));
+                        subject,description, imageExists));
                 //this will write it out
-                LibraryActivity.library.reWriteLibrary();
+
+
+                LibraryActivity.library.reWriteLibrary(libraryFile);
 
             }
         });
@@ -119,7 +125,9 @@ public class AddBookActivity extends AppCompatActivity {
                     StrictMode.setVmPolicy(builder.build());
 
                     //Need to check permission
-                    if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    System.out.println("I got here to ask for the permission");
+                    //if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        System.out.println("Did not get to this point to ask");
                         String path = Environment.getExternalStorageDirectory() + "/i" + isbn_edit.getText().toString() + ".jpg";
                         isbnShare = path;
                         File file = new File(path);
@@ -129,30 +137,42 @@ public class AddBookActivity extends AppCompatActivity {
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
                         if (isbn_edit.getText().toString().equals(null)) {
                             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                            imageExists = true;
+                            //resize the image
                         } else {
                             startActivity(intent);
+                            imageExists = true;
                         }
-                    } else {
-                        if (shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA)) {
-                            Toast.makeText(getApplicationContext(), "Camera permission is needed to show the camera preview.", Toast.LENGTH_SHORT).show();
-                        }
+                    //} else {
+                        //if (shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA)) {
+                         //   Toast.makeText(getApplicationContext(), "Camera permission is needed to show the camera preview.", Toast.LENGTH_SHORT).show();
+                        //}
 
                         //Request Camera permission
-                        requestPermissions(new String[]{android.Manifest.permission.CAMERA}, 1);
+                        //requestPermissions(new String[]{android.Manifest.permission.CAMERA}, 1);
 
-                    }
+                    //}
                 }
         });
 
         final Button updatePicButton = findViewById(R.id.update_button);
         updatePicButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                myBitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/i" + isbn_edit.getText().toString() + ".jpg");
-                //String fname = Environment.getExternalStorageDirectory() + "/pic.jpg";
-                //System.out.println(fname);
-                BitmapDrawable ob = new BitmapDrawable(getResources(), myBitmap);
-                ScrollView layout = (ScrollView)findViewById(R.id.scroll_view);
-                layout.setBackgroundDrawable(ob);
+                if(checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    myBitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/i" + isbn_edit.getText().toString() + ".jpg");
+                    //String fname = Environment.getExternalStorageDirectory() + "/pic.jpg";
+                    //System.out.println(fname);
+                    BitmapDrawable ob = new BitmapDrawable(getResources(), myBitmap);
+                    ScrollView layout = (ScrollView) findViewById(R.id.scroll_view);
+                    layout.setBackgroundDrawable(ob);
+                } else {
+                    if(shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        Toast.makeText(getApplicationContext(), "Storage permission is needed to access the saved photo.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    //Request storage
+                    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                }
 
             }
         });

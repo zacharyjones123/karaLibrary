@@ -11,6 +11,7 @@ public class Book {
     private String description;
     private String subject;
     private int rating;
+    private boolean hasImage;
 
     public Book() {
         this.ISBN = null;
@@ -22,6 +23,7 @@ public class Book {
         this.description = null;
         this.subject = null;
         rating = -1;
+        this.hasImage = false;
     }
 
     public Book(String ISBN) {
@@ -31,7 +33,8 @@ public class Book {
     public Book(String ISBN, String title,
                 String authorFirst, String authorLast,
                 String genre, String grade,
-                String subject,String description) {
+                String subject,String description,
+                boolean hasImage) {
         this.ISBN = ISBN.replace("\n", "").replace("\r", "");
         this.title = title.replace("\n", "").replace("\r", "");
         this.authorLast = authorLast.replace("\n", "").replace("\r", "");
@@ -41,6 +44,7 @@ public class Book {
         this.description = description.replace("\n", "").replace("\r", "");
         this.subject = subject.replace("\n", "").replace("\r", "");
         rating = 0;
+        this.hasImage = hasImage;
 
         //Ok, and every 10 words, add an enter in the description
         String temp = "";
@@ -99,6 +103,10 @@ public class Book {
         return rating;
     }
 
+    public boolean getHasImage() {
+        return hasImage;
+    }
+
     //Setters (Mutators)
 
     public void setISBN(String ISBN) {
@@ -135,6 +143,10 @@ public class Book {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public void setHasImage(boolean hasImage) {
+        this.hasImage = hasImage;
     }
 
     public String toString() {
@@ -189,6 +201,10 @@ public class Book {
         }
 
         if(this.getRating() != b.getRating()) {
+            isTrue = false;
+        }
+
+        if(this.getHasImage() != b.getHasImage()) {
             isTrue = false;
         }
 
